@@ -1,0 +1,34 @@
+{
+  "name": "nerdpanel",
+  "version": "0.0.0",
+  "description": "A lil vanity~",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garbados/nerdpanel.git"
+  },
+  "keywords": [
+    "mastodon"
+  ],
+  "author": "D Dino <garbados@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/garbados/nerdpanel/issues"
+  },
+  "homepage": "https://github.com/garbados/nerdpanel#readme",
+  "dependencies": {
+    "handlebars": "^4.0.10",
+    "mastodon-api": "^1.3.0",
+    "pouchdb": "^6.2.0"
+  },
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "esdoc": "^0.5.2",
+    "mocha": "^3.4.2",
+    "nyc": "^11.0.2",
+    "standard": "^10.0.2"
+  }
+}
