@@ -4,7 +4,16 @@
   "description": "A lil vanity~",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha -R spec"
+    "build": "mkdir -p build && npm-run-all -p build:*",
+    "build:scripts": "browserify lib/index.js -o build/app.js",
+    "build:static": "cp -r static/* build",
+    "clean": "rm -r build",
+    "serve": "serve build -p 8000",
+    "start": "npm run build && npm run serve",
+    "test": "standard 'lib/*.js' 'test/*.js' && mocha -R spec",
+    "watch": "npm-run-all -p watch:*",
+    "watch:scripts": "watch 'npm run build:scripts' lib",
+    "watch:static": "watch 'npm run build:static' static"
   },
   "repository": {
     "type": "git",
@@ -20,15 +29,19 @@
   },
   "homepage": "https://github.com/garbados/nerdpanel#readme",
   "dependencies": {
+    "backbone": "^1.3.3",
     "handlebars": "^4.0.10",
+    "jquery": "^3.2.1",
     "mastodon-api": "^1.3.0",
     "pouchdb": "^6.2.0"
   },
   "devDependencies": {
     "browserify": "^14.4.0",
-    "esdoc": "^0.5.2",
     "mocha": "^3.4.2",
+    "npm-run-all": "^4.0.2",
     "nyc": "^11.0.2",
-    "standard": "^10.0.2"
+    "serve": "^5.2.2",
+    "standard": "^10.0.2",
+    "watch": "^1.0.2"
   }
 }
