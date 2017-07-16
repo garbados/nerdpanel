@@ -4,6 +4,8 @@ A static site for examining your toots. A nerdy lil vanity~
 
 The app provides full-text search for toots, supports using multiple accounts, and allows sorting toots by interactions.
 
+This app is currently a proof of concept. See the [issues](https://github.com/garbados/nerdpanel/issues) page to learn about upcoming enhancements, to file a bug report, or to request a feature.
+
 ## Usage
 
 You can use the nerdpanel app on [garbados.github.io](https://garbados.github.io/nerdpanel) or you can build it yourself and use it locally, or deploy it wherever on the web.
@@ -16,12 +18,12 @@ Use [git](https://git-scm.com) and [npm](https://www.npmjs.com) to install the p
 git clone git@github.com:garbados/nerdpanel.git
 cd nerdpanel
 npm install
-npm start
+npm run build
 ```
 
-Running `npm start` will build the website to the `public/` folder.
+Running `npm run build` will build the website to the `build/` folder.
 
-You can also run `npm run serve` which will serve the app at `http://localhost:8000`.
+You can also run `npm start` which will build and serve the app at `http://localhost:8000`.
 
 ## Testing
 
@@ -31,9 +33,11 @@ To run the test suite, do:
 npm test
 ```
 
+For developing, you can use `npm run watch` to watch changes to the `lib/` and `static/` folders.
+
 ## Contributing
 
-Every little bit helps! If you find a bug, please file an issue. If you fix a bug, please file a pull request.
+Every little bit helps! If you find a bug, please file an issue. If you fix a bug, please file a pull request. Thank you!
 
 ## Addendum
 
