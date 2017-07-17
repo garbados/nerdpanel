@@ -2,7 +2,7 @@
 
 A static site for examining your toots. A nerdy lil vanity~
 
-The app provides full-text search for toots, supports using multiple accounts, and allows sorting toots by interactions.
+The app provides full-text search for toots, and allows sorting toots by interactions.
 
 This app is currently a proof of concept. See the [issues](https://github.com/garbados/nerdpanel/issues) page to learn about upcoming enhancements, to file a bug report, or to request a feature.
 
