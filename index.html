@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nerdpanel</title>
+
+  <!-- FAVICONS -->
+
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="icons/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="icons/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="icons/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="icons/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="60x60" href="icons/apple-touch-icon-60x60.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="icons/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="icons/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="icons/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="icons/favicon-196x196.png" sizes="196x196" />
+  <link rel="icon" type="image/png" href="icons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/png" href="icons/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="icons/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="icons/favicon-128.png" sizes="128x128" />
+  <meta name="application-name" content="Nerdpanel"/>
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+  <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+
+  <!-- STYLESHEETS -->
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body>
+  <div class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Nerdpanel</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li role="presentation"><a href="#refresh">Get Latest Toots</a></li>
+        <li role="presentation"><a href="#logout">Log Out</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <div id="app">
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>Loading...</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEMPLATES -->
+
+  <script type="text/x-underscore-template" id="signin-form-template">
+    <div class="jumbotron">
+      <h1>Welcome to Nerdpanel!</h1>
+      <p>
+        Nerdpanel is a browser app that you can use to search your toots or sort them by dates, favourites, or boosts.
+        All of your information is stored on your browser. If you ever want to delete your data from the browser,
+        click "Logout" in the navbar.
+      </p>
+      <p>To get started, please provide the URL of a Mastodon instance where you have an account.</p>
+    </div>
+    <form>
+      <div class="form-group">
+        <label for="mastodon-url">Mastodon instance URL</label>
+        <input autofocus type="url" class="form-control" id="mastodon-url" placeholder="ex: https://mastodon.social">
+      </div>
+      <button type="submit" class="btn btn-default btn-signin">Sign in</button>
+    </form>
+  </script>
+
+  <script type="text/x-underscore-template" id="toot-download-template">
+    <h2>Downloading your toots...</h2>
+    <p>Nerdpanel is downloading your toots from Mastodon into your browser. No intermediary server is used to store or view your toots.</p>
+    <p>This may take a moment.</p>
+  </script>
+
+  <script type="text/x-underscore-template" id="toot-list-template">
+    <h2>Search and sort your toots!</h2>
+    <div class="row">
+      <div class="col-xs-12 col-md-3">
+        <form class="form" id="searchForm">
+          <div class="form-group">
+            <label for="searchQuery">Search Text</label>
+            <input type="text" autofocus name="searchQuery" class="form-control" placeholder="Look for...">
+          </div>
+          <button type="submit" class="btn btn-primary btn-search">Search!</button>
+        </form>
+        <hr>
+        <form class="form" id="sortForm">
+          <div class="form-group">
+            <label for="sortOrder">Sort by</label>
+            <select class="form-control" name="sortOrder">
+              <option value="sortByDate">Date</option>
+              <option value="sortByFavs">Favourites</option>
+              <option value="sortByBoosts">Boosts</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary btn-sort">Sort!</button>
+        </form>
+      </div>
+      <section id="queryResults" class="col-xs-12 col-md-9">
+        <div id="toots"></div>
+        <form id="nextPage">
+          <button type="submit" class="btn btn-primary btn-block" style="margin-bottom: 15px;">Next Page</button>
+        </form>
+      </section>
+    </div>
+  </script>
+
+  <script type="text/x-underscore-template" id="toot-show-template">
+    <p><strong>Date: <%= created_at %></strong> (<a href="<%= url %>">link</a>)</p>
+    <p>Favorites: <%= favourites_count %>, Boosts: <%= reblogs_count %></p>
+    <% if (spoiler_text) { %><p class="text-info"><%= spoiler_text %></p><% } %>
+    <div class="well"><%= content %></div>
+    <hr>
+  </script>
+
+  <script type="text/x-underscore-template" id="toot-refresh-template">
+    <h2>Refreshing your toots...</h2>
+    <p>Nerdpanel has deleted all the toots it downloaded to your browser, and is now re-downloading them so it can index the latest information.</p>
+  </script>
+
+  <script type="text/x-underscore-template" id="logout-template">
+    <h2>Logging out...</h2>
+    <p>Nerdpanel has deleted all the data it downloaded to your browser. To re-download, just refresh the page!</p>
+  </script>
+
+  <!-- JAVASCRIPT -->
+
+  <script type="text/javascript" src="app.js"></script>
+</body>
+</html>
