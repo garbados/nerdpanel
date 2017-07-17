@@ -1,5 +1,7 @@
 # nerdpanel
 
+[![Build Status](https://travis-ci.org/garbados/nerdpanel.svg?branch=master)](https://travis-ci.org/garbados/nerdpanel)
+
 A static site for examining your toots. A nerdy lil vanity~
 
 The app provides full-text search for toots, and allows sorting toots by interactions.
