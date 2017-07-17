@@ -2,11 +2,14 @@ language: node_js
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+  github_token: "$GITHUB_TOKEN"
   local_dir: build
   on:
     branch: master
 node_js:
-- '7.4.0'
+- 7.4.0
 after_success:
 - npm run build
+env:
+  global:
+    secure: 64U1FbBzqRBrD6GIb35l8peHcbi3lp3/mnfByR+KfBukSWTXHkPx0VGr5uPn8UBxLScAOXBPr/inMAgd3zjK2lpwwCYv0GxuhgIhmgkdqD3rtU8ZizdeDuz2BUJyZgXl7zLiIq3GXxmzYeGh652V9PHpU/fX4Tr9vz5McqbdQyDTNPfYEcLE/MICMH7p9NLuefGfc2QMi2GYGJey/LQEnCe/4wyL3fX4o6JQ4eFx+viUEv1qz8udZhXOAFbdzHto8zjstasqAP+n3mwjF+7ClbByO05SPsHndiITjsSBoTH51N+D2cbcqWjxujhixokLub/rh+0IFS0IMYB9Xw89A2Q5JastPMCveUp5D82gyhJ4IofKzc/pHPWgrJifUopym9KudlYen4XLA2rhGF7+F9Jan4rI2p2mcp54DZ9wuT4i/N23dGfbR3LU7hcRPPLModB12Pq2bUzeOMDO3dImRRcmN1EITAS2RbnIW2qphiIaEdvhK0aUhCjTWHfLtgHU7P44zQ3Q3jRH8L7Bb7XX0GZLYcnfmsfhoWKtFRDl3aRuB9INdsv3Ms9Fi1rYLPbLHZY8xC+PZDwNy0S5MdhGYaJXM/0eWjEquZzikT4P7plwj+JFqSZnPC1GPyj+9wYcULUoGwwWxpKBlEkBKNgq5NWhQ5BCSnMevSNLqbK9LBA=
