@@ -81,7 +81,7 @@
   </script>
 
   <script type="text/x-underscore-template" id="toot-list-template">
-    <h2><%= title %></h2>
+    <h2>Search and sort your toots!</h2>
     <div class="row">
       <div class="col-xs-12 col-md-3">
         <form class="form" id="searchForm">
@@ -89,7 +89,7 @@
             <label for="searchQuery">Search Text</label>
             <input type="text" autofocus name="searchQuery" class="form-control" placeholder="Look for...">
           </div>
-          <button type="submit" class="btn btn-default btn-search">Search!</button>
+          <button type="submit" class="btn btn-primary btn-search">Search!</button>
         </form>
         <hr>
         <form class="form" id="sortForm">
@@ -101,10 +101,15 @@
               <option value="sortByBoosts">Boosts</option>
             </select>
           </div>
-          <button type="submit" class="btn btn-default btn-sort">Sort!</button>
+          <button type="submit" class="btn btn-primary btn-sort">Sort!</button>
         </form>
       </div>
-      <section id="toots" class="col-xs-12 col-md-9"></section>
+      <section id="queryResults" class="col-xs-12 col-md-9">
+        <div id="toots"></div>
+        <form id="nextPage">
+          <button type="submit" class="btn btn-primary btn-block" style="margin-bottom: 15px;">Next Page</button>
+        </form>
+      </section>
     </div>
   </script>
 
