@@ -21,9 +21,9 @@ npm install
 npm run build
 ```
 
-Running `npm run build` will build the website to the `build/` folder.
+Running `npm run build` will build the website to the `build/` folder. You can serve that folder as a static site.
 
-You can also run `npm start` which will build and serve the app at `http://localhost:8000`.
+You can also run `npm start` which will build the app and serve it at `http://localhost:8000`.
 
 ## Testing
 
@@ -33,7 +33,7 @@ To run the test suite, do:
 npm test
 ```
 
-For developing, you can use `npm run watch` to watch changes to the `lib/` and `static/` folders.
+For development, you can use `npm run watch` to watch changes to the `lib/` and `static/` folders.
 
 ## Contributing
 
